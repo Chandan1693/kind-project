@@ -6,19 +6,19 @@ food_page = """
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Food</title>
+    <title><span style="color: #FF5733;">Food</span></title>
 </head>
 <body>
-    <h1>Food Microservice</h1>
-    <p>Welcome to the food microservice!</p>
-    <a href="/">Home</a>
+    <h1 style="color: #FF5733;">Food Microservice</h1>
+    <p>Welcome to the <span style="color: #FF5733;">food microservice</span>!</p>
+    <a href="/" style="color: #FF5733;">Home</a>
 </body>
 </html>
 """
 
 @app.route("/")
 def home():
-    return "Welcome to the Food Microservice!"
+    return "<h1 style='color: #FF5733;'>Welcome to the <span style='color: #FF5733;'>Food Microservice!</span></h1>"
 
 @app.route("/food")
 def food():
