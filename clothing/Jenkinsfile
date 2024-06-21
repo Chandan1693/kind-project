@@ -1,0 +1,36 @@
+pipeline {
+    agent any
+
+    environment {
+        DOCKERHUB_CREDENTIALS = credentials('dockerhub-credentials-id')
+    }
+
+    stages {
+        stage('Build Clothing Microservice Image') {
+            steps {
+                script {
+                    docker.build("docker.io/chand93/clothing-service:${env.BUILD_NUMBER}", "./clothing")
+                }
+            }
+        }
+
+        stage('Push Clothing Microservice Image') {
+            steps {
+                script {
+                    docker.withRegistry('https://index.docker.io/v1/', 'dockerhub-credentials-id') {
+                        docker.image("docker.io/chand93/clothing-service:${env.BUILD_NUMBER}").push()
+                    }
+                }
+            }
+        }
+    }
+
+    post {
+        success {
+            echo "Successfully built and pushed Clothing Microservice image"
+        }
+        failure {
+            echo "Failed to build or push Clothing Microservice image"
+        }
+    }
+}
