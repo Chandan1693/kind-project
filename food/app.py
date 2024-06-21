@@ -2,7 +2,7 @@ from flask import Flask, render_template_string, url_for
 
 app = Flask(__name__)
 
-clothing_page = """
+food_page = """
 <!DOCTYPE html>
 <html>
 <head>
