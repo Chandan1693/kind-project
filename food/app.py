@@ -6,7 +6,7 @@ food_page = """
 <!DOCTYPE html>
 <html>
 <head>
-    <title><span style="color: #007bff;">Clothing</span></title>
+    <title><span style="color: #007bff;">Food</span></title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -19,7 +19,7 @@ food_page = """
             color: #007bff;
             font-size: 2.5em;
         }
-        .clothing-image {
+        .food-image {
             max-width: 100%;
             height: auto;
             display: block;
@@ -46,7 +46,7 @@ food_page = """
 </head>
 <body>
     <h1>Food Microservice</h1>
-    <p>Welcome to the <span style="color: #007bff;">clothing microservice</span>!</p>
+    <p>Welcome to the <span style="color: #007bff;">food microservice</span>!</p>
     <img src="{{ url_for('static', filename='food.jpg') }}" alt="Food Image" class="food-image">
     <br>
     <a href="/">Home</a>
@@ -59,7 +59,7 @@ def home():
     return "<h1>Welcome to the Food Microservice!</h1>"
 
 @app.route("/food")
-def clothing():
+def food():
     return render_template_string(food_page)
 
 if __name__ == "__main__":
