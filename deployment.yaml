@@ -1,0 +1,91 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: food-app-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: food-app
+  template:
+    metadata:
+      labels:
+        app: food-app
+    spec:
+      containers:
+      - name: food-container
+        image: chand93/food-service:latest
+        ports:
+        - containerPort: 5000
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: clothing-app-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: clothing-app
+  template:
+    metadata:
+      labels:
+        app: clothing-app
+    spec:
+      containers:
+      - name: clothing-container
+        image: chand93/clothing-service:latest
+        ports:
+        - containerPort: 5000
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: food-service
+spec:
+  selector:
+    app: food-app
+  ports:
+  - protocol: TCP
+    port: 80
+    targetPort: 5000
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: clothing-service
+spec:
+  selector:
+    app: clothing-app
+  ports:
+  - protocol: TCP
+    port: 80
+    targetPort: 5000
+
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: app-ingress
+spec:
+  rules:
+  - host: example.com
+    http:
+      paths:
+      - path: /food
+        pathType: Prefix
+        backend:
+          service:
+            name: food-service
+            port:
+              number: 80
+      - path: /clothing
+        pathType: Prefix
+        backend:
+          service:
+            name: clothing-service
+            port:
+              number: 80
