@@ -4,7 +4,7 @@ pipeline {
     environment {
         DOCKERHUB_CREDENTIALS = credentials('dockerhub-credentials-id')
         DOCKER_IMAGE = "chand93/flask-app:${env.BUILD_NUMBER}"
-        DOCKER_REGISTRY = "https://docker.io"  // Ensure Docker registry URL is correct
+        DOCKER_REGISTRY = "docker.io"  // Correct registry URL format
     }
 
     stages {
