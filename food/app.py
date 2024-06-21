@@ -1,39 +1,65 @@
-from flask import Flask, render_template_string
+from flask import Flask, render_template_string, url_for
 
 app = Flask(__name__)
 
-food_page = """
+clothing_page = """
 <!DOCTYPE html>
 <html>
 <head>
-    <title><span style="color: #FF5733;">Food</span></title>
+    <title><span style="color: #007bff;">Clothing</span></title>
     <style>
-        .food-image {
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+            color: #333;
+            text-align: center;
+            padding: 40px;
+        }
+        h1 {
+            color: #007bff;
+            font-size: 2.5em;
+        }
+        .clothing-image {
             max-width: 100%;
             height: auto;
             display: block;
-            margin: 0 auto;
+            margin: 20px auto;
             border-radius: 8px;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        a {
+            color: #007bff;
+            text-decoration: none;
+            font-weight: bold;
+            margin-top: 20px;
+            display: inline-block;
+            padding: 10px 20px;
+            border: 2px solid #007bff;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+        }
+        a:hover {
+            background-color: #007bff;
+            color: #fff;
         }
     </style>
 </head>
 <body>
-    <h1 style="color: #FF5733;">Food Microservice</h1>
-    <p>Welcome to the <span style="color: #FF5733;">food microservice</span>!</p>
-    <img src="https://images.pexels.com/photos/1640777/pexels-photo-1640777.jpeg" alt="Food Image 1" class="food-image">
-    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQua6_rUTN2ZqCO15sjF7Dh15wN14qqavSQbfK5C6aREvPKHq-RFnU3gJ7jh8nNa1pyV2g&usqp=CAU" alt="Food Image 2" class="food-image">
-    <a href="/" style="color: #FF5733;">Home</a>
+    <h1>Food Microservice</h1>
+    <p>Welcome to the <span style="color: #007bff;">clothing microservice</span>!</p>
+    <img src="{{ url_for('static', filename='food.jpg') }}" alt="Food Image" class="food-image">
+    <br>
+    <a href="/">Home</a>
 </body>
 </html>
 """
 
 @app.route("/")
 def home():
-    return "<h1 style='color: #FF5733;'>Welcome to the <span style='color: #FF5733;'>Food Microservice!</span></h1>"
+    return "<h1>Welcome to the Food Microservice!</h1>"
 
 @app.route("/food")
-def food():
+def clothing():
     return render_template_string(food_page)
 
 if __name__ == "__main__":
