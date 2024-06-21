@@ -47,7 +47,7 @@ clothing_page = """
 <body>
     <h1>Clothing Microservice</h1>
     <p>Welcome to the <span style="color: #007bff;">clothing microservice</span>!</p>
-    <img src="{{ url_for('static', filename='clothing.jpg') }}" alt="Clothing Image" class="clothing-image">
+    <img src="{{ url_for('static', filename='clothes.jpg') }}" alt="Clothing Image" class="clothing-image">
     <br>
     <a href="/">Home</a>
 </body>
