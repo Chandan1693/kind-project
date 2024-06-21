@@ -9,7 +9,7 @@ pipeline {
         stage('Build Food Microservice Image') {
             steps {
                 script {
-                    docker.build("docker.io/yourusername/food-service:${env.BUILD_NUMBER}", "./food")
+                    docker.build("docker.io/chand93/food-service:${env.BUILD_NUMBER}", "./food")
                 }
             }
         }
@@ -18,7 +18,7 @@ pipeline {
             steps {
                 script {
                     docker.withRegistry('https://index.docker.io/v1/', 'dockerhub-credentials-id') {
-                        docker.image("docker.io/yourusername/food-service:${env.BUILD_NUMBER}").push()
+                        docker.image("docker.io/chand93/food-service:${env.BUILD_NUMBER}").push()
                     }
                 }
             }
