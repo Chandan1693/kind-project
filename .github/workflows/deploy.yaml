@@ -1,0 +1,27 @@
+name: Deploy to Kubernetes
+
+on:
+  push:
+    branches:
+      - build  # Change this to your branch name if different
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest  # You can change the operating system if needed
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up kubectl
+        uses: azure/k8s-set-context@v1
+        with:
+          kubeconfig: ${{ secrets.KUBE_CONFIG_DATA }}
+
+      - name: Deploy to Kubernetes
+        run: |
+          kubectl apply -f deployment.yaml
+
+      - name: Check deployment status
+        run: |
+          kubectl get pods --namespace default  # Adjust namespace if necessary
