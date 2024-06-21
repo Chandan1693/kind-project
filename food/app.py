@@ -6,10 +6,6 @@ food_page = """
 <!DOCTYPE html>
 <html>
 <head>
-<<<<<<< HEAD
-    <title><span style="color: #FF5733;">Food</span></title>
-    <style>
-=======
     <title><span style="color: #007bff;">Food</span></title>
     <style>
         body {
@@ -23,24 +19,10 @@ food_page = """
             color: #007bff;
             font-size: 2.5em;
         }
->>>>>>> origin/build
         .food-image {
             max-width: 100%;
             height: auto;
             display: block;
-<<<<<<< HEAD
-            margin: 0 auto;
-            border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-        }
-    </style>
-</head>
-<body>
-    <h1 style="color: #FF5733;">Food Microservice</h1>
-    <p>Welcome to the <span style="color: #FF5733;">food microservice</span>!</p>
-    <img src="{{ url_for('static', filename='food.jpg') }}" alt="Food Image" class="food-image">
-    <a href="/" style="color: #FF5733;">Home</a>
-=======
             margin: 20px auto;
             border-radius: 8px;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
@@ -68,18 +50,13 @@ food_page = """
     <img src="{{ url_for('static', filename='food.jpg') }}" alt="Food Image" class="food-image">
     <br>
     <a href="/">Home</a>
->>>>>>> origin/build
 </body>
 </html>
 """
 
 @app.route("/")
 def home():
-<<<<<<< HEAD
-    return "<h1 style='color: #FF5733;'>Welcome to the <span style='color: #FF5733;'>Food Microservice!</span></h1>"
-=======
     return "<h1>Welcome to the Food Microservice!</h1>"
->>>>>>> origin/build
 
 @app.route("/food")
 def food():
@@ -87,3 +64,4 @@ def food():
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=5000)
+
