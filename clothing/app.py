@@ -6,11 +6,7 @@ clothing_page = """
 <!DOCTYPE html>
 <html>
 <head>
-<<<<<<< HEAD
     <title>Clothing</title>
-    <style>
-=======
-    <title><span style="color: #007bff;">Clothing</span></title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -23,18 +19,11 @@ clothing_page = """
             color: #007bff;
             font-size: 2.5em;
         }
->>>>>>> origin/build
         .clothing-image {
             max-width: 100%;
             height: auto;
             display: block;
-<<<<<<< HEAD
-            margin: 0 auto;
-            border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-        }
-=======
-            margin: 20px auto;
+            margin: 20px auto; /* Adjusted margin */
             border-radius: 8px;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         }
@@ -53,19 +42,13 @@ clothing_page = """
             background-color: #007bff;
             color: #fff;
         }
->>>>>>> origin/build
     </style>
 </head>
 <body>
     <h1>Clothing Microservice</h1>
-<<<<<<< HEAD
-    <p>Welcome to the clothing microservice!</p>
-    <img src="{{ url_for('static', filename='clothing.jpg') }}" alt="Clothing Image" class="clothing-image">
-=======
     <p>Welcome to the <span style="color: #007bff;">clothing microservice</span>!</p>
     <img src="{{ url_for('static', filename='clothes.jpg') }}" alt="Clothing Image" class="clothing-image">
     <br>
->>>>>>> origin/build
     <a href="/">Home</a>
 </body>
 </html>
@@ -81,3 +64,4 @@ def clothing():
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=5000)
+
