@@ -1,4 +1,4 @@
-from flask import Flask, render_template_string
+from flask import Flask, render_template_string, url_for
 
 app = Flask(__name__)
 
@@ -6,19 +6,30 @@ food_page = """
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Food</title>
+    <title><span style="color: #FF5733;">Food</span></title>
+    <style>
+        .food-image {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            margin: 0 auto;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+    </style>
 </head>
 <body>
-    <h1>Food Microservice</h1>
-    <p>Welcome to the food microservice!</p>
-    <a href="/">Home</a>
+    <h1 style="color: #FF5733;">Food Microservice</h1>
+    <p>Welcome to the <span style="color: #FF5733;">food microservice</span>!</p>
+    <img src="{{ url_for('static', filename='food.jpg') }}" alt="Food Image" class="food-image">
+    <a href="/" style="color: #FF5733;">Home</a>
 </body>
 </html>
 """
 
 @app.route("/")
 def home():
-    return "Welcome to the Food Microservice!"
+    return "<h1 style='color: #FF5733;'>Welcome to the <span style='color: #FF5733;'>Food Microservice!</span></h1>"
 
 @app.route("/food")
 def food():
