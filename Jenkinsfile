@@ -4,7 +4,7 @@ pipeline {
     environment {
         DOCKERHUB_CREDENTIALS = credentials('dockerhub-credentials-id')
         DOCKER_IMAGE = "chand93/flask-app:${env.BUILD_NUMBER}"
-        DOCKER_REGISTRY = "docker.io"  // Replace with your Docker registry URL
+        DOCKER_REGISTRY = "https://docker.io"  // Ensure Docker registry URL is correct
     }
 
     stages {
@@ -22,7 +22,7 @@ pipeline {
         stage('Push') {
             steps {
                 script {
-                    docker.withRegistry("${DOCKER_REGISTRY}", 'dockerhub-credentials-id') {
+                    docker.withRegistry("${DOCKER_REGISTRY}", 'docker-credentials-id') {
                         dockerImage.push()
                     }
                 }
