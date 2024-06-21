@@ -5,7 +5,7 @@ FROM python:3.9-slim
 WORKDIR /app
 
 # Copy the current directory contents into the container at /app
-COPY clothing/ .
+COPY . .
 
 # Install Flask and any other dependencies
 RUN pip install --no-cache-dir flask
