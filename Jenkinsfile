@@ -2,9 +2,9 @@ pipeline {
     agent any
 
     environment {
-        DOCKERHUB_CREDENTIALS = credentials('dockerhub-credentials-id')
+        DOCKERHUB_CREDENTIALS = credentials('docker-credentials-id') // Ensure correct credential ID
         DOCKER_IMAGE = "chand93/flask-app:${env.BUILD_NUMBER}"
-        DOCKER_REGISTRY = "docker.io"  // Correct registry URL format
+        DOCKER_REGISTRY = "docker.io"
     }
 
     stages {
@@ -22,7 +22,7 @@ pipeline {
         stage('Push') {
             steps {
                 script {
-                    docker.withRegistry("${DOCKER_REGISTRY}", 'docker-credentials-id') {
+                    docker.withRegistry("${DOCKER_REGISTRY}", 'docker-credentials-id') {  // Ensure correct credential ID
                         dockerImage.push()
                     }
                 }
