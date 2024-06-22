@@ -14,5 +14,5 @@ RUN pip install --no-cache-dir flask
 EXPOSE 5000
 
 # Run clothing_app.py when the container launches
-CMD ["python", "clothing_app.py"]
+CMD ["python", "app.py"]
 
