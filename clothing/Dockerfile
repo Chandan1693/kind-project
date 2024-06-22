@@ -13,8 +13,6 @@ RUN pip install --no-cache-dir flask
 # Make port 5000 available to the world outside this container
 EXPOSE 5000
 
-# Define environment variable
-ENV NAME clothing
+# Run clothing_app.py when the container launches
+CMD ["python", "clothing_app.py"]
 
-# Run app.py when the container launches
-CMD ["python", "./app.py"]

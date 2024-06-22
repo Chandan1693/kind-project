@@ -1,9 +1,10 @@
+# Deployment for Food Service
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: food-app-deployment
+  name: food-deployment
 spec:
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels:
       app: food-app
@@ -13,13 +14,13 @@ spec:
         app: food-app
     spec:
       containers:
-        - name: food-service
-          image: chand93/food-service:12
-          ports:
-            - containerPort: 5000
+      - name: food-container
+        image: chand93/food-service:latest
+        ports:
+        - containerPort: 5000
 
 ---
-
+# Service for Food Service
 apiVersion: v1
 kind: Service
 metadata:
@@ -28,18 +29,18 @@ spec:
   selector:
     app: food-app
   ports:
-    - protocol: TCP
-      port: 80
-      targetPort: 5000
+  - protocol: TCP
+    port: 80
+    targetPort: 5000
 
 ---
-
+# Deployment for Clothing Service
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: clothing-app-deployment
+  name: clothing-deployment
 spec:
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels:
       app: clothing-app
@@ -49,13 +50,13 @@ spec:
         app: clothing-app
     spec:
       containers:
-        - name: clothing-service
-          image: chand93/clothing-service:6
-          ports:
-            - containerPort: 5000
+      - name: clothing-container
+        image: chand93/clothing-service:latest
+        ports:
+        - containerPort: 5000
 
 ---
-
+# Service for Clothing Service
 apiVersion: v1
 kind: Service
 metadata:
@@ -64,30 +65,32 @@ spec:
   selector:
     app: clothing-app
   ports:
-    - protocol: TCP
-      port: 80
-      targetPort: 5000
+  - protocol: TCP
+    port: 80
+    targetPort: 5000
 
 ---
-
+# Ingress Configuration
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: app-ingress
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /$2
 spec:
   rules:
-  - host: example.com
+  - host: ""
     http:
       paths:
-      - path: /food
-        pathType: Prefix
+      - pathType: ImplementationSpecific
+        path: /food(/|$)(.*)
         backend:
           service:
             name: food-service
             port:
               number: 80
-      - path: /clothing
-        pathType: Prefix
+      - pathType: ImplementationSpecific
+        path: /clothing(/|$)(.*)
         backend:
           service:
             name: clothing-service
