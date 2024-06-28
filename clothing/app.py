@@ -54,7 +54,7 @@ clothing_page = """
 </html>
 """
 
-@app.route("/clothing")
+@app.route("/")
 def home():
     return "<h1>Welcome to the Clothing Microservice!</h1>"
 
