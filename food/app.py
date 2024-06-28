@@ -54,7 +54,7 @@ food_page = """
 </html>
 """
 
-@app.route("/")
+@app.route("/food")
 def home():
     return "<h1>Welcome to the Food Microservice!</h1>"
 
